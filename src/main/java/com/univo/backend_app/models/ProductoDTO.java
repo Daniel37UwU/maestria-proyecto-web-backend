@@ -1,6 +1,15 @@
 package com.univo.backend_app.models;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "productos")
 public class ProductoDTO {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; // Agregamos el ID que Neon necesita para la llave primaria
+
     private String nombre;
     private int stockActual;
     private int stockMinimo;
@@ -18,6 +27,9 @@ public class ProductoDTO {
     }
 
     // Getters y Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
 

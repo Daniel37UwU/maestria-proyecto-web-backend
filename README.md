@@ -9,5 +9,5 @@ InvenMax IA es una plataforma inteligente diseñada para la gestión, control y 
 ## Stack Tecnológico
 * **Frontend:** Angular
 * **Backend:** Java + Spring Boot
-* **Base de Datos:** MySQL (vía XAMPP / Local Server)
+* **Base de Datos:** PostgreSQL Cloud Serverless (vía Neon)
 * **IA:** Spring AI + Modelos de Lenguaje
