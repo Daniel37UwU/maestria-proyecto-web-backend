@@ -1,30 +1,28 @@
 package com.univo.backend_app.controllers;
 
 import com.univo.backend_app.models.MensajeDTO;
+import com.univo.backend_app.repositories.MensajeRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/api/v1/saludos") // Esta es la URL base para este controlador
+@RequestMapping("/api/v1/mensajes") // Esta es la URL base para este controlador
 public class SaludoController {
+    private final MensajeRepository repository;
 
-    // 1. Endpoint GET: Para obtener información básica
-    @GetMapping("/basico")
-    public String obtenerSaludo() {
-        return "¡Hola desde el Backend con Spring Boot!";
+    // Inyección de dependencia por constructor
+    public SaludoController(MensajeRepository repository) {
+        this.repository = repository;
     }
 
-    // 2. Endpoint GET que devuelve un objeto convertido en JSON
-    @GetMapping("/json")
-    public MensajeDTO obtenerSaludoJson() {
-        // Spring Boot automáticamente convertirá este objeto Java a JSON
-        return new MensajeDTO("El sistema está funcionando", "Servidor UNIVO");
+    @GetMapping
+    public List<MensajeDTO> listaMensajes() {
+        return repository.findAll();    // Hace un SELECT * FROM mensajes
     }
 
-    // 3. Endpoint POST: Para recibir información desde el Frontend o cliente
-    @PostMapping("/enviar")
-    public MensajeDTO recibirMensaje(@RequestBody MensajeDTO mensajeRecibido) {
-        // Simulamos que procesamos la información y devolvemos una respuesta
-        String respuestaTexto = "Mensaje recibido correctamente de: " + mensajeRecibido.getRemitente();
-        return new MensajeDTO(respuestaTexto, "Sistema");
+    @PostMapping
+    public MensajeDTO guardarMensaje(@RequestBody MensajeDTO nuevoMensaje) {
+        return repository.save(nuevoMensaje);   // Hace un INSERT INTO mensajes
     }
 }

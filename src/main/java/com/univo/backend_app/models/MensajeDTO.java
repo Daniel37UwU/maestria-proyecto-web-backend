@@ -1,5 +1,15 @@
 package com.univo.backend_app.models;
+
+import jakarta.persistence.*;
+
+@Entity // <-- Le dice a Spring que esto será una tabla en PostgreSQL
+@Table(name = "mensajes")
 public class MensajeDTO {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; // Llave primaria autoincremental
+
     private String texto;
     private String remitente;
 
@@ -12,6 +22,14 @@ public class MensajeDTO {
     }
 
     // Getters y Setters (Necesarios para que Spring Boot los convierta a JSON)
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
     public String getTexto() {
         return texto;
     }
