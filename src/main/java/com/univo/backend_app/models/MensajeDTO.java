@@ -22,14 +22,6 @@ public class MensajeDTO {
     }
 
     // Getters y Setters (Necesarios para que Spring Boot los convierta a JSON)
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
     public String getTexto() {
         return texto;
     }

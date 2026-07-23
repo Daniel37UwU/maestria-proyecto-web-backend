@@ -8,6 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/mensajes") // Esta es la URL base para este controlador
+@CrossOrigin(origins = "http://localhost:4200")
 public class SaludoController {
     private final MensajeRepository repository;
 
