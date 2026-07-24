@@ -23,5 +23,12 @@ public class AiController {
 
         return Map.of("respuesta", respuesta);
     }
+
+    // Inventario describir
+    @GetMapping("/clasificar-producto")
+    public Map<String, String> clasificarProducto(@RequestParam String descripcion) {
+        String respuesta = iaService.analizarDatosSaaS(descripcion);
+        return Map.of("analisis", respuesta);
+    }
 }
 

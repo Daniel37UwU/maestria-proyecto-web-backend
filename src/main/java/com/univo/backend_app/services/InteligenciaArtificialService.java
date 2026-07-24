@@ -20,4 +20,18 @@ public class InteligenciaArtificialService {
                 .call()
                 .content();
     }
+    // Este metodo recibirá el nombre de un producto nuevo y devuelva automáticamente la categoría ideal del inventario y el nivel de stock mínimo recomendado (Lógica del SaaS InvenMax)
+    public String analizarDatosSaaS(String descripcionProducto) {
+        String systemPrompt = "Eres el motor de IA de InvenMax, un sistema SaaS de gestión de inventarios. " +
+                "Tu tarea es recibir el nombre de un producto, describirlo y clasificarlo. " +
+                "Responde EXCLUSIVAMENTE en este formato de una sola línea: " +
+                "CATEGORÍA: [Nombre de categoría] | STOCK MÍNIMO RECOMENDADO: [Número entre 5 y 50] | DESCRIPCIÓN: [Descripcion breve Max 150 palabras]. " +
+                "No agregues saludos, explicaciones ni puntos extra.";
+
+        return chatClient.prompt()
+                .system(systemPrompt)
+                .user(descripcionProducto)
+                .call()
+                .content();
+    }
 }
